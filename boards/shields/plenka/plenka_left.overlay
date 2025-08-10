@@ -1,0 +1,25 @@
+/* plenka_left.overlay */
+#include "plenka.dtsi"
+
+&kscan0 {
+    status = "okay";
+    row-gpios
+        = <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // P1.06 alpha row top
+        , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // P1.04 alpha row middle
+        , <&pro_micro 9 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // P0.11 alpha row bottom
+        , <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)> // P0.31 thumb row
+        ;
+
+    /* Reversed order to fix horizontal mapping */
+    col-gpios
+        = <&pro_micro 6  GPIO_ACTIVE_HIGH> // P0.17 alpha col 0
+        , <&pro_micro 5  GPIO_ACTIVE_HIGH> // P0.20 alpha col 1
+        , <&pro_micro 4  GPIO_ACTIVE_HIGH> // P0.22 alpha col 2
+        , <&pro_micro 3  GPIO_ACTIVE_HIGH> // P0.24 alpha col 3
+        , <&pro_micro 2  GPIO_ACTIVE_HIGH> // P1.00 alpha col 4
+        , <&pro_micro 20 GPIO_ACTIVE_HIGH> // Col 5: P0.29 (Thumb 0)
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH> // Col 6: P0.02 (Thumb 1)
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH> // Col 7: P1.15 (Thumb 2)
+        ;
+};
+
