@@ -1,0 +1,51 @@
+#
+# Copyright (c) 2022 Darryl deHaan
+# SPDX-License-Identifier: MIT
+#
+
+if BOARD_TCHERTA_LEFT
+
+config ZMK_KEYBOARD_NAME
+    default "Tcherta"
+
+config ZMK_SPLIT_ROLE_CENTRAL
+    default y
+
+endif # BOARD_TCHERTA_LEFT
+
+
+if BOARD_TCHERTA_LEFT || BOARD_TCHERTA_RIGHT
+
+config BOARD
+    default "tcherta"
+
+config ZMK_SPLIT
+    default y
+
+config BT_CTLR
+    default BT
+
+if USB
+
+config USB_NRFX
+    default y
+
+config USB_DEVICE_STACK
+    default y
+
+endif # USB
+
+#FIXME JNP Are those 'widgets' applicable to Tcherta? Not remains of Corneish-Zen?
+menuconfig CUSTOM_WIDGET_BATTERY_STATUS
+    bool "custom battery status widget"
+
+menuconfig CUSTOM_WIDGET_OUTPUT_STATUS
+    bool "custom output status widget"
+
+menuconfig CUSTOM_WIDGET_LAYER_STATUS
+    bool "custom layer status widget"
+
+menuconfig CUSTOM_WIDGET_PERIPHERAL_STATUS
+    bool "custom peripheral status widget"
+
+endif # BOARD_TCHERTA_LEFT || BOARD_TCHERTA_RIGHT
