@@ -1,0 +1,24 @@
+manifest:
+  remotes:
+    - name: zmkfirmware
+      url-base: https://github.com/zmkfirmware
+    - name: urob
+      url-base: https://github.com/urob
+    - name: m165437 #Some 'gem' nice view module, unchecked, questionable
+      url-base: https://github.com/M165437 #Some 'gem' nice view module, unchecked, questionable
+  projects:
+    - name: zmk
+      remote: zmkfirmware
+      revision: v0.3
+      import: app/west.yml
+    - name: zmk-adaptive-key
+      remote: urob
+      revision: v0.3
+    - name: zmk-helpers
+      remote: urob
+      revision: main
+#    - name: nice-view-gem
+#      remote: m165437
+#      revision: main
+  self:
+    path: config

@@ -1,0 +1,14 @@
+file_format: "1"
+id: tcherta
+name: Tcherta Duo
+url: https://github.com/littorio/zmk-keyboard-tcherta
+type: board
+arch: arm
+features:
+  - keys
+outputs:
+  - usb
+  - ble
+siblings:
+  - tcherta_left
+  - tcherta_right
