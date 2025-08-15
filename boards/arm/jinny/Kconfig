@@ -5,6 +5,3 @@
 
 config BOARD_CORNEISH_ZEN_LEFT
     bool
-
-config BOARD_CORNEISH_ZEN_RIGHT
-    bool

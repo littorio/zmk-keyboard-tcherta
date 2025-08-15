@@ -5,7 +5,7 @@
 *
 */
 
-#include "corneish_zen.dtsi"
+#include "jinny.dtsi"
 
 /{
     chosen {
