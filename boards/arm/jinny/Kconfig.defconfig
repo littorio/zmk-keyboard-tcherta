@@ -20,7 +20,7 @@ config BOARD
     default "jinny"
 
 config ZMK_SPLIT
-    default y
+    default n
 
 config BT_CTLR
     default BT
