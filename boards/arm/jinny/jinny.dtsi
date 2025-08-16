@@ -25,7 +25,6 @@
         zephyr,sram = &sram0;
         zephyr,flash = &flash0;
         zmk,kscan = &kscan0;
-        zmk,display = &epd;
         zmk,physical-layout = &foostan_corne_6col_layout;
     };
 
