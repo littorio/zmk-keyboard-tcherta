@@ -1,0 +1,5 @@
+config SHIELD_TCHERTA
+    def_bool $(shields_list_contains,tcherta_left)
+
+#config SHIELD_TCHERTA_RIGHT
+#    def_bool $(shields_list_contains,tcherta_right)
