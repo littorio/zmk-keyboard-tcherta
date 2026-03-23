@@ -200,6 +200,30 @@ ZMK_COMBO(pipe, &kp PIPE, 18 28, DEFAULT)
             hold-trigger-key-positions = < 0 1 2 3 4    10 11 12 13 14    20 21 22 23 24    30 31 32>;
             hold-trigger-on-release;
         };
+        hmr_morph_cs: hmr_morph_comma_semi {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            /* This is the magic change: the second binding is a behavior, not &kp */
+            bindings = <&kp>, <&mp_key_cs>;
+            hold-trigger-key-positions = < 0 1 2 3 4   10 11 12 13 14   20 21 22 23 24   30 31 32>;
+            hold-trigger-on-release;
+        };
+        hmr_morph_dc: hmr_morph_dot_colon {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "balanced";
+            require-prior-idle-ms = <150>;
+            tapping-term-ms = <280>;
+            quick-tap-ms = <175>;
+            /* This is the magic change: the second binding is a behavior, not &kp */
+            bindings = <&kp>, <&mp_key_dc>;
+            hold-trigger-key-positions = < 0 1 2 3 4   10 11 12 13 14   20 21 22 23 24   30 31 32>;
+            hold-trigger-on-release;
+        };
 
         skq: sticky_key_quick_release {
             compatible = "zmk,behavior-sticky-key";
@@ -228,8 +252,8 @@ ZMK_COMBO(pipe, &kp PIPE, 18 28, DEFAULT)
         default_layer {
             bindings = <
 &kp Q  &kp W  &kp E  &kp R  &kp T                                       &kp Y  &kp U   &kp I     &kp O   &kp P
-&hml LGUI A  &hml LALT S &hml LCTRL D  &hml LSHIFT F  &kp G             &kp H  &hmr RSHIFT J   &hmr RCTRL K     &hmr LALT L   &hmr RGUI APOS
-&kp Z  &kp X  &kp C   &kp V  &kp B                                      &kp N  &kp M   &mp_key_cs &mp_key_dc &kp FSLH
+&hml LGUI A  &hml LALT S &hml LCTRL D  &hml LSHIFT F  &kp G             &kp H  &hmr RSHIFT J   &hmr RCTRL K           &hmr LALT L           &hmr RGUI APOS
+&hml LGUI Z  &hml LALT X &hml LCTRL C  &hml LSHIFT V  &kp B             &kp N  &hmr RSHIFT M   &hmr_morph_cs RCTRL 0  &hmr_morph_dc LALT 0  &hmr RGUI FSLH
                  &mt LSHIFT F13 &mt LGUI RET &lt L_NUM ESC              &lt L_NAV TAB &lt L_SYM SPACE &mt RSHIFT F14
             >;
         };
