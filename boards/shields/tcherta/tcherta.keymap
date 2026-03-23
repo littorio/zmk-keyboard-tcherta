@@ -18,9 +18,6 @@ ZMK_COMBO(under, &kp UNDER, 22 23, DEFAULT)
 //ZMK_COMBO(esc, &kp ESC, 26 27, DEFAULT)
 ZMK_COMBO(tab, &kp TAB, 12 13, DEFAULT)
 
-ZMK_COMBO(capsword, &caps_word, 32 33, DEFAULT)
-ZMK_COMBO(sticky_shift, &skq LSHIFT, 31 34, DEFAULT)
-
 // Horizontal combos - right hand
 
 // Those are geometrically natural, but it seems that DEL is pressed more easily,
@@ -61,6 +58,25 @@ ZMK_COMBO(fslh, &kp FSLH, 17 27, DEFAULT)
 ZMK_COMBO(pipe, &kp PIPE, 18 28, DEFAULT)
 
 / {
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_capsword {
+            timeout-ms = <40>;
+            key-positions = <32 33>;
+            bindings = <&caps_word>;
+            /* This ensures the combo is checked before the hold-tap logic matures */
+            layers = <0>;
+        };
+
+        combo_sticky_shift {
+            timeout-ms = <40>;
+            key-positions = <31 34>;
+            bindings = <&skq LSHIFT>;
+            layers = <0>;
+        };
+    };
 
     macros {
         macro_duo_kp: macro_duo_kp {
