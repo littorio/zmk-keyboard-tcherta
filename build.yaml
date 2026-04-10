@@ -1,0 +1,11 @@
+---
+include:
+  - board: nice_nano_v2
+    shield: plenka_left
+  - board: nice_nano_v2
+    shield: plenka_right
+  - board: nice_nano_v2
+    shield: tcherta_left
+  - board: nice_nano_v2
+    shield: tcherta_right
+
