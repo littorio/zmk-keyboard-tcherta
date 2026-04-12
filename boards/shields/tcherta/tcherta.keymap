@@ -2,12 +2,28 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include "zmk-helpers/helper.h"
+#if __has_include("/Users/evgenyn/orodruin/keyboard_closed/tcherta-password.dtsi")
+#include "/Users/evgenyn/orodruin/keyboard_closed/tcherta-password.dtsi"
+#endif
 
 // layers
 #define DEFAULT 0
 #define L_NAV 1
 #define L_NUM 2
 #define L_SYM 3
+
+#ifndef PASS
+#define PASS &none
+#endif
+#ifndef PASS1
+#define PASS1 &none
+#endif
+#ifndef PASS2
+#define PASS2 &none
+#endif
+#ifndef PASS3
+#define PASS3 &none
+#endif
 
 // Horizontal combos - left hand
 // Should work fine, but some ansi-iso conflict forces to use the "grave"
@@ -276,10 +292,10 @@ ZMK_COMBO(pipe, &kp PIPE, 18 28, DEFAULT)
 
         nav_layer {
             bindings = <
-&kp Q      &kp W      &kp E       &kp R        &kp T               &kp K_REDO &kp K_PASTE &kp K_COPY  &kp K_CUT  &bootloader
-&hml LGUI A &hml LALT S &hml LCTRL D &hml LSHIFT F &kp G          &kp LEFT   &kp DOWN    &kp UP      &kp RIGHT  &caps_word
-&kp Z      &kp X      &kp C       &kp V        &kp B          &kp HOME   &kp PG_DN   &kp PG_UP   &kp END    &kp INS
-                                            &kp C        &none &none         &kp RET &kp BSPC &kp DEL
+&kp Q          &kp W         &kp E          &kp R          &kp T              &kp K_REDO     PASS1         PASS2        PASS3      &bootloader
+&hml LGUI A    &hml LALT S   &hml LCTRL D   &hml LSHIFT F  &kp G              &kp LEFT       &kp DOWN      &kp UP        &kp RIGHT   &caps_word
+&kp Z          &kp X         &kp C          &kp V          &kp B              &kp HOME       &kp PG_DN     &kp PG_UP     &kp END     &kp INS
+                             &kp C          PASS           &none              &kp RET        &kp BSPC      &kp DEL
             >;
         };
 
