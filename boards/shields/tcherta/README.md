@@ -21,6 +21,8 @@ This bootstrap step:
 - ensures `.gitignore` contains:
   - `boards/shields/tcherta/DELETE_ME_tcherta-password.dtsi`
 
+This bootstrap step is idempotent, so it can be run multiple times safely.
+
 ## Sealed Build
 
 Run:
@@ -40,4 +42,4 @@ What happens:
 ## Notes
 
 - The passwords are still embedded in the resulting firmware image.
-- For normal keymap/layout development, use `just build tcherta`.
+- For regular development, use `just build tcherta` (no password prompts).

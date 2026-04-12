@@ -2,8 +2,8 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include "zmk-helpers/helper.h"
-#if __has_include("/Users/evgenyn/orodruin/keyboard_closed/tcherta-password.dtsi")
-#include "/Users/evgenyn/orodruin/keyboard_closed/tcherta-password.dtsi"
+#if __has_include("DELETE_ME_tcherta-password.dtsi")
+#include "DELETE_ME_tcherta-password.dtsi"
 #endif
 
 // layers
