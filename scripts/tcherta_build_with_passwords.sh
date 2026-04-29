@@ -93,6 +93,7 @@ emit_macro() {
       exit 1
     fi
 
+    # DTS bindings syntax uses '=' for the first entry, then ',' for subsequent entries.
     if (( first )); then
       printf '            = <%s>\n' "$binding"
       first=0
@@ -100,6 +101,9 @@ emit_macro() {
       printf '            , <%s>\n' "$binding"
     fi
   done
+
+  # Append Enter after each password sequence.
+  printf '            , <&macro_tap &kp RET>\n'
 
   printf '            ;\n'
   printf '        };\n'
