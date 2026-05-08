@@ -4,6 +4,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: littorio
+      url-base: https://github.com/littorio
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -14,6 +16,9 @@ manifest:
       revision: v0.3
     - name: zmk-helpers
       remote: urob
+      revision: main
+    - name: zmk-orbita-layout
+      remote: littorio
       revision: main
   self:
     path: config
