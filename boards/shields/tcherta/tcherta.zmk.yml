@@ -1,9 +1,0 @@
----
-file_format: "1"
-id: tcherta
-name: tcherta
-type: shield
-features:
-  - keys
-siblings:
-  - tcherta_left

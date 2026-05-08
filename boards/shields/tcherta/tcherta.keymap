@@ -1,7 +1,0 @@
-#include <dt-bindings/zmk/keys.h>
-
-#if __has_include("DELETE_ME_orbita-password.dtsi")
-#include "DELETE_ME_orbita-password.dtsi"
-#endif
-
-#include "../../../../zmk-orbita-layout/include/orbita_layout.keymap.inc"
