@@ -1,5 +1,0 @@
-config SHIELD_PLENKA_LEFT
-    def_bool $(shields_list_contains,plenka_left)
-
-#config SHIELD_PLENKA_RIGHT
-#    def_bool $(shields_list_contains,plenka_right)
