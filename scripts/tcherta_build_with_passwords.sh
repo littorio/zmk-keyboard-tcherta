@@ -6,7 +6,16 @@ PROJECT_DIR=$(CDPATH= cd -- "$SCRIPT_DIR/.." && pwd)
 
 ZMK_WORKSPACE_DEFAULT=$(CDPATH= cd -- "$PROJECT_DIR/../../.." && pwd)
 ZMK_WORKSPACE="${ZMK_WORKSPACE:-$ZMK_WORKSPACE_DEFAULT}"
-PRIVATE_DTSI="${PRIVATE_DTSI:-$PROJECT_DIR/boards/shields/tcherta/DELETE_ME_tcherta-password.dtsi}"
+SHIELD="${SHIELD:-tcherta}"
+PRIVATE_DTSI="${PRIVATE_DTSI:-$PROJECT_DIR/boards/shields/${SHIELD}/DELETE_ME_orbita-password.dtsi}"
+
+case "$SHIELD" in
+  tcherta|plenka) ;;
+  *)
+    echo "Unsupported shield: $SHIELD (expected: tcherta or plenka)" >&2
+    exit 1
+    ;;
+esac
 
 cleanup() {
   rm -f "$PRIVATE_DTSI"
@@ -113,17 +122,17 @@ umask 077
 {
   echo '/ {'
   echo '    macros {'
-  emit_macro tcherta_pass1 "$PASS1"
-  emit_macro tcherta_pass2 "$PASS2"
-  emit_macro tcherta_pass3 "$PASS3"
+  emit_macro orbita_pass1 "$PASS1"
+  emit_macro orbita_pass2 "$PASS2"
+  emit_macro orbita_pass3 "$PASS3"
   echo '    };'
   echo '};'
   echo
   echo '#define PASS &none'
-  echo '#define PASS1 &tcherta_pass1'
-  echo '#define PASS2 &tcherta_pass2'
-  echo '#define PASS3 &tcherta_pass3'
+  echo '#define PASS1 &orbita_pass1'
+  echo '#define PASS2 &orbita_pass2'
+  echo '#define PASS3 &orbita_pass3'
 } > "$PRIVATE_DTSI"
 
 cd "$ZMK_WORKSPACE"
-just build tcherta
+just build "$SHIELD"

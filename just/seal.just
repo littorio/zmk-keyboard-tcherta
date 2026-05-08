@@ -1,12 +1,16 @@
-# build tcherta with prompted passwords from local helper script
+# build shield with prompted passwords from local helper script
 seal expr:
     #!/usr/bin/env bash
     set -euo pipefail
 
-    if [[ "{{ expr }}" != "tcherta" ]]; then
-        echo "seal currently supports only 'tcherta'." >&2
-        exit 1
-    fi
+    shield="{{ expr }}"
+    case "$shield" in
+        tcherta|plenka) ;;
+        *)
+            echo "seal supports only 'tcherta' or 'plenka'." >&2
+            exit 1
+            ;;
+    esac
 
     script="${SEAL_SCRIPT:-{{ justfile_directory() }}/modules/zmk/zmk-keyboard-tcherta/scripts/tcherta_build_with_passwords.sh}"
 
@@ -17,5 +21,6 @@ seal expr:
     fi
 
     ZMK_WORKSPACE="{{ justfile_directory() }}" \
-    PRIVATE_DTSI="{{ justfile_directory() }}/modules/zmk/zmk-keyboard-tcherta/boards/shields/tcherta/DELETE_ME_tcherta-password.dtsi" \
+    SHIELD="$shield" \
+    PRIVATE_DTSI="{{ justfile_directory() }}/modules/zmk/zmk-keyboard-tcherta/boards/shields/${shield}/DELETE_ME_orbita-password.dtsi" \
     "$script"

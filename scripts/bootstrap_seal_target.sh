@@ -10,8 +10,11 @@ JUSTFILE="$WORKSPACE_DIR/Justfile"
 HELPER_SCRIPT="$PROJECT_DIR/scripts/tcherta_build_with_passwords.sh"
 SEAL_MODULE="$PROJECT_DIR/just/seal.just"
 PROJECT_GITIGNORE="$PROJECT_DIR/.gitignore"
-TEMP_DTSI_REL="boards/shields/tcherta/DELETE_ME_tcherta-password.dtsi"
 IMPORT_LINE="import 'modules/zmk/zmk-keyboard-tcherta/just/seal.just'"
+TEMP_DTSI_RELS=(
+  "boards/shields/tcherta/DELETE_ME_orbita-password.dtsi"
+  "boards/shields/plenka/DELETE_ME_orbita-password.dtsi"
+)
 
 if [[ ! -f "$JUSTFILE" ]]; then
   echo "Justfile not found: $JUSTFILE" >&2
@@ -94,9 +97,11 @@ if [[ ! -w "$PROJECT_GITIGNORE" ]]; then
   exit 0
 fi
 
-if ! rg -q "^${TEMP_DTSI_REL}\$" "$PROJECT_GITIGNORE"; then
-  echo "$TEMP_DTSI_REL" >> "$PROJECT_GITIGNORE"
-  echo "Added ignore rule to $PROJECT_GITIGNORE"
-fi
+for rel in "${TEMP_DTSI_RELS[@]}"; do
+  if ! rg -q "^${rel}\$" "$PROJECT_GITIGNORE"; then
+    echo "$rel" >> "$PROJECT_GITIGNORE"
+    echo "Added ignore rule to $PROJECT_GITIGNORE: $rel"
+  fi
+done
 
 echo "Bootstrap complete."
