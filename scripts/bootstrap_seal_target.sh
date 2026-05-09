@@ -7,13 +7,13 @@ WORKSPACE_DEFAULT=$(CDPATH= cd -- "$PROJECT_DIR/../../.." && pwd)
 
 WORKSPACE_DIR="${1:-${ZMK_WORKSPACE:-$WORKSPACE_DEFAULT}}"
 JUSTFILE="$WORKSPACE_DIR/Justfile"
-HELPER_SCRIPT="$PROJECT_DIR/scripts/tcherta_build_with_passwords.sh"
-SEAL_MODULE="$PROJECT_DIR/just/seal.just"
+HELPER_SCRIPT="$WORKSPACE_DIR/modules/zmk/zmk-orbita-layout/scripts/orbita_build_with_passwords.sh"
+SEAL_MODULE="$WORKSPACE_DIR/modules/zmk/zmk-orbita-layout/just/seal.just"
 PROJECT_GITIGNORE="$PROJECT_DIR/.gitignore"
-IMPORT_LINE="import 'modules/zmk/zmk-keyboard-tcherta/just/seal.just'"
+IMPORT_LINE="import 'modules/zmk/zmk-orbita-layout/just/seal.just'"
+LEGACY_IMPORT_LINE="import 'modules/zmk/zmk-keyboard-tcherta/just/seal.just'"
 TEMP_DTSI_RELS=(
   "boards/shields/tcherta/DELETE_ME_orbita-password.dtsi"
-  "boards/shields/plenka/DELETE_ME_orbita-password.dtsi"
 )
 
 if [[ ! -f "$JUSTFILE" ]]; then
@@ -51,6 +51,17 @@ if rg -q '^# >>> tcherta-seal begin$' "$JUSTFILE"; then
   mv "$justfile_tmp" "$JUSTFILE"
   trap - EXIT INT TERM
   echo "Removed legacy embedded seal block from $JUSTFILE"
+fi
+
+if rg -q "^${LEGACY_IMPORT_LINE}\$" "$JUSTFILE"; then
+  justfile_tmp="$(mktemp)"
+  trap 'rm -f "$justfile_tmp"' EXIT INT TERM
+  awk -v legacy_import_line="$LEGACY_IMPORT_LINE" '
+    $0 != legacy_import_line { print }
+  ' "$JUSTFILE" > "$justfile_tmp"
+  mv "$justfile_tmp" "$JUSTFILE"
+  trap - EXIT INT TERM
+  echo "Removed legacy seal import from $JUSTFILE"
 fi
 
 if rg -q "^${IMPORT_LINE}\$" "$JUSTFILE"; then

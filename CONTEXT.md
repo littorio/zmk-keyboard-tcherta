@@ -1,14 +1,12 @@
 # Project Context: zmk-keyboard-tcherta
 
 Purpose: keyboard module containing shield definitions and local build helpers for
-`tcherta` and `plenka`, with optional sealed-password build flow.
+`tcherta`, with optional sealed-password build flow.
 
 ## Layout
 
 - `boards/shields/tcherta/`: tcherta shield configs/overlays/docs
-- `boards/shields/plenka/`: plenka shield configs/overlays/docs
 - `scripts/`: helper scripts for bootstrapping and sealed builds
-- `just/seal.just`: imported just recipe providing `just seal <shield>`
 - `build.yaml`, `west.yml`, `zephyr/module.yml`: ZMK/Zephyr module integration files
 
 ## Shared Layout Relationship
@@ -26,15 +24,13 @@ logic from the local shared module:
 
 - Regular dev builds:
   - `just build tcherta`
-  - `just build plenka`
   - no password prompts
 
 - Sealed build:
-  - `just seal tcherta` or `just seal plenka`
+  - `just seal tcherta`
   - prompts for `PASS1`, `PASS2`, `PASS3`
   - generates temporary DTSI under matching shield directory:
     - `boards/shields/tcherta/DELETE_ME_orbita-password.dtsi`
-    - `boards/shields/plenka/DELETE_ME_orbita-password.dtsi`
   - runs `just build <shield>`
   - removes temporary DTSI on exit via trap cleanup
 
@@ -42,12 +38,11 @@ logic from the local shared module:
 
 - Bootstrap script:
   - `scripts/bootstrap_seal_target.sh`
-  - ensures workspace `Justfile` imports `modules/zmk/zmk-keyboard-tcherta/just/seal.just`
+  - ensures workspace `Justfile` imports `modules/zmk/zmk-orbita-layout/just/seal.just`
   - ensures temporary DTSI paths are ignored in `.gitignore`
 
-- Password macro script:
-  - `scripts/tcherta_build_with_passwords.sh`
-  - shield-aware (`tcherta` / `plenka`)
+- Password macro script (shared module):
+  - `modules/zmk/zmk-orbita-layout/scripts/orbita_build_with_passwords.sh`
   - maps password characters to ZMK macro key bindings
   - emits `PASS1`, `PASS2`, `PASS3` bindings into temporary DTSI
   - each emitted password macro appends `&kp RET` at end
