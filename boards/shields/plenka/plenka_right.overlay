@@ -11,7 +11,7 @@
         = <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Row 0
         , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Row 1
         , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Row 2
-        , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Row 3 (Thumb Right)
+        , <&pro_micro 3 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>  // Row 3 (Thumb Right)
         ;
 
     col-gpios
@@ -20,5 +20,8 @@
         , <&pro_micro 14 GPIO_ACTIVE_HIGH> // Col 7
         , <&pro_micro 15 GPIO_ACTIVE_HIGH> // Col 8
         , <&pro_micro 18 GPIO_ACTIVE_HIGH> // Col 9
+        , <&pro_micro 5 GPIO_ACTIVE_HIGH>  // Thumb outmost
+        , <&pro_micro 4 GPIO_ACTIVE_HIGH>  // Thumb middle
+        , <&pro_micro 19 GPIO_ACTIVE_HIGH> // Thumb innermost
         ;
 };
