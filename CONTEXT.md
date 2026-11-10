@@ -1,7 +1,7 @@
 # Project Context: zmk-keyboard-tcherta
 
-Purpose: keyboard module containing shield definitions and local build helpers for
-`tcherta`, with optional sealed-password build flow.
+Purpose: keyboard module containing physical shield definitions and local build
+helpers. The active branch, `tcherta_shield_0`, supports `tcherta`.
 
 ## Layout
 
@@ -9,12 +9,16 @@ Purpose: keyboard module containing shield definitions and local build helpers f
 - `scripts/`: helper scripts for bootstrapping and sealed builds
 - `build.yaml`, `west.yml`, `zephyr/module.yml`: ZMK/Zephyr module integration files
 
+Plenka sources are retained on the `plenka_1` branch. They are not present on
+the active branch and must not be listed as active build targets until restored
+or merged deliberately.
+
 ## Shared Layout Relationship
 
 This module now treats shield keymaps as thin wrappers and pulls common layout
 logic from the local shared module:
 
-- `modules/zmk/orbita-layout/include/orbita_layout.keymap.inc`
+- `modules/zmk/zmk-orbita-layout/include/orbita_layout.keymap.inc`
 
 `tcherta.keymap` includes:
 - optional local password DTSI (`DELETE_ME_orbita-password.dtsi`)
@@ -52,8 +56,3 @@ logic from the local shared module:
 - Passwords are embedded in resulting firmware image.
 - Sealed flow avoids keeping plaintext DTSI in repo by deleting generated file after build.
 - Input prompts are visible by design in this project’s workflow.
-
-## TODO
-
-- Create a dedicated GitHub repository for `orbita-layout` and place it under remote version control.
-- Ensure this module depends on the remote-tracked `orbita-layout` source (not local-only files).

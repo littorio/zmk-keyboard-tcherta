@@ -43,3 +43,6 @@ What happens:
 
 - The passwords are still embedded in the resulting firmware image.
 - For regular development, use `just build tcherta` (no password prompts).
+- The shared Orbita layout also uses mouse emulation. `CONFIG_ZMK_POINTING=y`
+  is enabled on both halves; after the first Bluetooth flash with this option,
+  forget and re-pair the keyboard so the host refreshes its HID descriptor.
